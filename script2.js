@@ -8,7 +8,6 @@ let todos = JSON.parse(localStorage.getItem("todos")) || [];
 const date = document.querySelector(".date");
 const doneTasks = JSON.parse(localStorage.getItem("donetodos")) || [];
 // import Swal from 'sweetalert2';
-// const Swal = require('sweetalert2');
 
 if (todos) {
   todos.forEach((todo) => {
