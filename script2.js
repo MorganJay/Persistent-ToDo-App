@@ -151,7 +151,18 @@ function addListAfterCLick() {
 }
 
 function addListAfterKeypress(event) {
-  if (inputLength() > 0 && event.keyCode === 13) {
+  if(inputLength() === 0 && event.keyCode === 13) {
+    Swal.fire({
+      icon: 'error',
+      timerProgressBar: true,
+      showConfirmButton: false,
+      text: "Please enter a task to do",
+      toast: true,
+      position: 'top-end',
+      timer: 2000
+    });
+  }
+  else if (inputLength() > 0 && event.keyCode === 13) {
     createListElement();
   }
 }
@@ -161,7 +172,6 @@ function searchTodos(e) {
   const list = ol.querySelectorAll(".list-container");
   if (input != "") 
   {
-   
     Array.from(list).forEach((todo) => {
       if (todo.textContent.toLowerCase().indexOf(input) === -1) {
         todo.classList.add("hide");
