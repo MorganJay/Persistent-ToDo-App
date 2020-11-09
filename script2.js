@@ -67,7 +67,7 @@ function getDate() {
   const d = new Date();
   const dayName = days[d.getDay()];
   const monthName = monthNames[d.getMonth()];
-  const day = d.getDay() + 1;
+  const day = d.getDate();
   const year = d.getFullYear();
   date.textContent = `${dayName} ${day} ${monthName}, ${year}`;
 }
