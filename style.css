@@ -37,7 +37,7 @@ header {
 
 h1 {
   margin-top: 5px;
-  font-size: clamp(1.9em, 10vw, 2.7em);
+  font-size: clamp(1.8em, 10vw, 2.7em);
   margin-bottom: 15px;
   text-transform: uppercase;
   -webkit-user-select: none;
@@ -252,6 +252,16 @@ a {
   }
   
   .search{
-    align-self: flex-start
+    align-self: flex-start;
+    font-size: 13px;
+  }
+
+  #userinput{
+    font-size: 13px;
+    width: 80%;
+  }
+
+  #enter{
+    min-width: 20%;
   }
 }
