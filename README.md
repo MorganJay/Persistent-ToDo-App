@@ -2,7 +2,10 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/eaaca0da-83c7-40bb-9aed-675b57e6876f/deploy-status)](https://app.netlify.com/sites/mjpersistenttodoapp/deploys)
 
 ### Technologies Used
-Built with HTML5, CSS and Vanilla JavaScript
+-HTML5
+-CSS 
+-Vanilla JavaScript
+
 [Published site](https://morganjay.github.io/Persistent-ToDo-App/)
 
 ### FEATURES
