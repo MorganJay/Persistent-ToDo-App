@@ -8,7 +8,7 @@
 
 [Published site](https://morganjay.github.io/Persistent-ToDo-App/)
 
-### FEATURES
+### Features
 - Add new task
 - Mark task as completed / uncompleted
 - Delete a task
