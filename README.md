@@ -4,7 +4,9 @@
 
 ## Technologies Used
 - HTML5
+
 - CSS 
+
 - Vanilla JavaScript
 
 [Published site](https://morganjay.github.io/Persistent-ToDo-App/)
