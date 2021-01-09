@@ -1,4 +1,5 @@
 # A Persistent To-Do List Web Application
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ab556729e1c34207b49101cadabe4052)](https://app.codacy.com/gh/MorganJay/Persistent-ToDo-App?utm_source=github.com&utm_medium=referral&utm_content=MorganJay/Persistent-ToDo-App&utm_campaign=Badge_Grade)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/eaaca0da-83c7-40bb-9aed-675b57e6876f/deploy-status)](https://app.netlify.com/sites/mjpersistenttodoapp/deploys)
 
 ### Technologies Used
