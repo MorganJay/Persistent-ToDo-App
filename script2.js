@@ -1,16 +1,16 @@
 //Cacheing selectors
-const addButton = document.getElementById("enter");
-const input = document.getElementById("userinput");
-const ol = document.querySelector("ol");
-const tasksNo = document.querySelector(".tasks");
-const searchInput = document.querySelector(".search");
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
-const date = document.querySelector(".date");
-const doneTasks = JSON.parse(localStorage.getItem("donetodos")) || [];
+const addButton = document.getElementById('enter');
+const input = document.getElementById('userinput');
+const ol = document.querySelector('ol');
+const tasksNo = document.querySelector('.tasks');
+const searchInput = document.querySelector('.search');
+let todos = JSON.parse(localStorage.getItem('todos')) || [];
+const date = document.querySelector('.date');
+const doneTasks = JSON.parse(localStorage.getItem('donetodos')) || [];
 // import Swal from 'sweetalert2';
 
 if (todos) {
-  todos.forEach((todo) => {
+  todos.forEach(todo => {
     if (doneTasks.includes(todo)) {
       ol.innerHTML += `
       <div class="list-container">
@@ -26,41 +26,41 @@ if (todos) {
     }
   });
   numberTasks();
-  const delButton = document.querySelectorAll(".delete");
-  const li = document.querySelectorAll("li");
-  li.forEach((list_item) => {
-    list_item.addEventListener("click", crossItem);
+  const delButton = document.querySelectorAll('.delete');
+  const li = document.querySelectorAll('li');
+  li.forEach(list_item => {
+    list_item.addEventListener('click', crossItem);
   });
-  delButton.forEach((delBtn) => {
-    delBtn.addEventListener("click", delItem);
+  delButton.forEach(delBtn => {
+    delBtn.addEventListener('click', delItem);
   });
 }
 
 function getDate() {
   // Get dates
   const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
   ];
 
   const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   const d = new Date();
@@ -81,56 +81,59 @@ function numberTasks() {
   } else if (todos.length >= 2) {
     tasksNo.textContent = `${todos.length} tasks`;
   } else {
-    tasksNo.textContent = "";
+    tasksNo.textContent = '';
   }
   return todos.length;
 }
 
 function storeTodos() {
   todos.unshift(input.value);
-  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 function createListElement() {
   storeTodos();
-  let div = document.createElement("div");
-  div.classList.add("list-container");
+  let div = document.createElement('div');
+  div.classList.add('list-container');
   div.innerHTML = `<li>${input.value}</li>
   <button type="button" class="delete">×</button>`;
   ol.prepend(div);
   numberTasks();
-  input.value = "";
+  input.value = '';
   const li = div.firstElementChild;
-  li.addEventListener("click", crossItem);
-  const delBtn = div.querySelector(".delete");
-  delBtn.addEventListener("click", delItem);
+  li.addEventListener('click', crossItem);
+  const delBtn = div.querySelector('.delete');
+  delBtn.addEventListener('click', delItem);
 }
 
 function crossItem(e) {
   const list_item = e.currentTarget;
   let listText = list_item.textContent;
-  if (list_item.classList.contains("done")) {
-    list_item.classList.remove("done");
+  if (list_item.classList.contains('done')) {
+    list_item.classList.remove('done');
     let index = doneTasks.indexOf(listText);
     doneTasks.splice(index, 1);
-    localStorage.setItem("donetodos", JSON.stringify(doneTasks));
+    localStorage.setItem('donetodos', JSON.stringify(doneTasks));
   } else {
-    list_item.classList.add("done");
+    list_item.classList.add('done');
     doneTasks.push(listText);
-    localStorage.setItem("donetodos", JSON.stringify(doneTasks));
-    Swal.fire("Good job!", "Task completed", "success");
-    document.querySelector("body").classList.add("fullheight");
+    localStorage.setItem('donetodos', JSON.stringify(doneTasks));
+    Swal.fire('Good job!', 'Task completed', 'success');
+    document.querySelector('body').classList.add('fullheight');
   }
 }
 
 function delItem(e) {
-  const listItem = e.path[1];
+  const listItem = e.srcElement.parentElement;
   const listItemContent = listItem.children[0].innerHTML;
   const index = todos.indexOf(listItemContent);
   ol.removeChild(listItem);
   todos.splice(index, 1);
   numberTasks();
-  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem('todos', JSON.stringify(todos));
+  const doneIndex = doneTasks.indexOf(listItemContent);
+  doneTasks.splice(doneIndex, 1);
+  localStorage.setItem('donetodos', JSON.stringify(doneTasks));
 }
 
 function addListAfterCLick() {
@@ -141,52 +144,47 @@ function addListAfterCLick() {
       icon: 'error',
       timerProgressBar: true,
       showConfirmButton: false,
-      text: "Please enter a task to do",
+      text: 'Please enter a task to do',
       toast: true,
       position: 'top-end',
-      timer: 2000
+      timer: 2000,
     });
   }
 }
 
 function addListAfterKeypress(event) {
-  if(inputLength() === 0 && event.keyCode === 13) {
+  if (inputLength() === 0 && event.keyCode === 13) {
     Swal.fire({
       icon: 'error',
       timerProgressBar: true,
       showConfirmButton: false,
-      text: "Please enter a task to do",
+      text: 'Please enter a task to do',
       toast: true,
       position: 'top-end',
-      timer: 2000
+      timer: 2000,
     });
-  }
-  else if (inputLength() > 0 && event.keyCode === 13) {
+  } else if (inputLength() > 0 && event.keyCode === 13) {
     createListElement();
   }
 }
 
 function searchTodos(e) {
   const input = e.target.value.toLowerCase();
-  const list = ol.querySelectorAll(".list-container");
-  if (input != "") 
-  {
-    Array.from(list).forEach((todo) => {
+  const list = ol.querySelectorAll('.list-container');
+  if (input != '') {
+    Array.from(list).forEach(todo => {
       if (todo.textContent.toLowerCase().indexOf(input) === -1) {
-        todo.classList.add("hide");
-      } 
-      else{
-        todo.classList.remove("hide");
+        todo.classList.add('hide');
+      } else {
+        todo.classList.remove('hide');
       }
     });
-  }
-  else
-  {
-      list.forEach(list_container => list_container.classList.remove("hide"));
+  } else {
+    list.forEach(list_container => list_container.classList.remove('hide'));
   }
 }
 
-document.addEventListener("DOMContentLoaded", getDate);
-addButton.addEventListener("click", addListAfterCLick);
-input.addEventListener("keypress", addListAfterKeypress);
-searchInput.addEventListener("keyup", searchTodos);
+document.addEventListener('DOMContentLoaded', getDate);
+addButton.addEventListener('click', addListAfterCLick);
+input.addEventListener('keypress', addListAfterKeypress);
+searchInput.addEventListener('keyup', searchTodos);
